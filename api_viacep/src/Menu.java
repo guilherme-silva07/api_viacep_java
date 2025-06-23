@@ -1,10 +1,7 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.ObjectInputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -21,7 +18,9 @@ public class Menu {
             System.out.println("Bem-vindo ao sistema de busca de CEP!");
             System.out.println("----------------------------------------");
             System.out.println("[1] Buscar CEP");
-            System.out.println("[2] Sair");
+            System.out.println("[2] Listar Endereços");
+            System.out.println("[3] Limpar Endereços");
+            System.out.println("[4] Sair");
             System.out.println("----------------------------------------");
             System.out.print("Escolha uma opção: ");
             Scanner scanner = new Scanner(System.in);
@@ -30,12 +29,59 @@ public class Menu {
             switch (opcao){
                 case "1": buscarCep();
                     break;
+                case "2": listarCep();
+                    break;
+                case "3": limparCep();
+                    break;
                 default: salvarCep();
                     break;
             }
 
-        } while (!opcao.equals("2"));
+        } while (!opcao.equals("4"));
 
+    }
+
+    private static void limparCep() {
+        File arquivo = new File("enderecos.txt");
+
+        if(!arquivo.exists()) {
+            System.out.println("Nenhum endereço encontrado. Por favor, busque um CEP primeiro.");
+            return;
+        }
+        try {
+            if(arquivo.delete()) System.out.println("Arquivo de endereços excluído com sucesso.");
+        } catch (SecurityException e) {
+            System.out.println("Erro ao tentar excluir o arquivo: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Erro inesperado ao tentar excluir o arquivo: " + e.getMessage());
+        }
+    }
+
+    private static void listarCep() {
+        File arquivo = new File("enderecos.txt");
+
+        if(!arquivo.exists()) {
+            System.out.println("Nenhum endereço encontrado. Por favor, busque um CEP primeiro.");
+            return;
+        }
+
+        try {
+
+            BufferedReader reader = new BufferedReader(new FileReader(arquivo));
+
+            while (reader.ready()) {
+                String linha = reader.readLine();
+                if (linha != null && !linha.trim().isEmpty()) {
+                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                    Endereco endereco = gson.fromJson(linha, Endereco.class);
+                    exibeEndereco(endereco);
+                }
+            }
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo não encontrado: " + e.getMessage());
+        } catch (IOException e) {
+            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
+        }
     }
 
     private static void salvarCep() {
@@ -44,7 +90,7 @@ public class Menu {
             FileWriter writer = new FileWriter(arquivo, true);
             for(Endereco end : enderecos) {
                 exibeEndereco(end);
-                Gson gson = new GsonBuilder().setPrettyPrinting().create();
+                Gson gson = new GsonBuilder().create();
                 writer.write(gson.toJson(end) + "\n");
             }
             writer.close();
@@ -66,15 +112,12 @@ public class Menu {
             return;
         }
 
-        try {
-            Endereco endereco = ViaCepAPI.buscaEnderecoPorCep(cep);
-            if (endereco != null) {
-                enderecos.add(endereco);
-            } else {
-                System.out.println("Nenhum endereço encontrado para o CEP informado.");
-            }
-        } catch (Exception e) {
-            System.out.println("Erro ao buscar o CEP: " + e.getMessage());
+        Endereco endereco = ViaCepAPI.buscaEnderecoPorCep(cep);
+        if (endereco != null) {
+            enderecos.add(endereco);
+            System.out.println("Endereço encontrado com sucesso!");
+        } else {
+            System.out.println("Nenhum endereço encontrado para o CEP informado.");
         }
     }
 
