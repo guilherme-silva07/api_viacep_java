@@ -1,0 +1,45 @@
+{
+  "cep": "38408-332",
+  "logradouro": "Rua Professor Mário Godoy",
+  "complemento": "",
+  "unidade": "",
+  "bairro": "Segismundo Pereira",
+  "localidade": "Uberlândia",
+  "uf": "MG",
+  "estado": "Minas Gerais",
+  "regiao": "Sudeste",
+  "ibge": "3170206",
+  "gia": "",
+  "ddd": "34",
+  "siafi": "5403"
+}
+{
+  "cep": "38400-358",
+  "logradouro": "Rua Carmo Gifoni",
+  "complemento": "",
+  "unidade": "",
+  "bairro": "Martins",
+  "localidade": "Uberlândia",
+  "uf": "MG",
+  "estado": "Minas Gerais",
+  "regiao": "Sudeste",
+  "ibge": "3170206",
+  "gia": "",
+  "ddd": "34",
+  "siafi": "5403"
+}
+{
+  "cep": "01001-000",
+  "logradouro": "Praça da Sé",
+  "complemento": "lado ímpar",
+  "unidade": "",
+  "bairro": "Sé",
+  "localidade": "São Paulo",
+  "uf": "SP",
+  "estado": "São Paulo",
+  "regiao": "Sudeste",
+  "ibge": "3550308",
+  "gia": "1004",
+  "ddd": "11",
+  "siafi": "7107"
+}
