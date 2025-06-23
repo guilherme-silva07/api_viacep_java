@@ -1,3 +1,5 @@
+import com.google.gson.Gson;
+
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -5,7 +7,7 @@ import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
 public class ViaCepAPI {
-    public static String buscaEnderecoPorCep(String cep) {
+    public static Endereco buscaEnderecoPorCep(String cep) {
         try {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder()
@@ -16,7 +18,15 @@ public class ViaCepAPI {
 
             if (response.statusCode() == 200) {
                 String body = response.body();
-                return body;
+
+                Gson gson = new Gson();
+                Endereco endereco = gson.fromJson(body, Endereco.class);
+
+                if (endereco.getCep() == null || endereco.getCep().isEmpty()) {
+                    return null;
+                }
+
+                return endereco;
             } else {
                 System.out.println("Erro ao acessar a API. Código de status: " + response.statusCode());
                 return null;
@@ -25,5 +35,6 @@ public class ViaCepAPI {
             System.out.println("Erro ao buscar o CEP: " + e.getMessage());
             return null;
         }
+
     }
 }

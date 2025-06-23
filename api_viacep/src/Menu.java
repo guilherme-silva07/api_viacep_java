@@ -40,10 +40,23 @@ public class Menu {
         }
 
         try {
-            String endereco = ViaCepAPI.buscaEnderecoPorCep(cep);
+            Endereco endereco = ViaCepAPI.buscaEnderecoPorCep(cep);
             if (endereco != null) {
-                System.out.println("Endereço encontrado: ");
-                System.out.println(endereco);
+                System.out.println("----------------------------------------");
+                System.out.println("Endereço encontrado: " + endereco.getCep());
+                System.out.println("Logradouro: " + endereco.getLogradouro());
+                System.out.println("Complemento: " + endereco.getComplemento());
+                System.out.println("Bairro: " + endereco.getBairro());
+                System.out.println("Localidade: " + endereco.getLocalidade());
+                System.out.println("UF: " + endereco.getUf());
+                System.out.println("Estado: " + endereco.getEstado());
+                System.out.println("Unidade: " + endereco.getUnidade());
+                System.out.println("Região: " + endereco.getRegiao());
+                System.out.println("IBGE: " + endereco.getIbge());
+                System.out.println("GIA: " + endereco.getGia());
+                System.out.println("DDD: " + endereco.getDdd());
+                System.out.println("SIAFI: " + endereco.getSiafi());
+                System.out.println("----------------------------------------");
             } else {
                 System.out.println("Nenhum endereço encontrado para o CEP informado.");
             }
