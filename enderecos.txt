@@ -1,3 +1,0 @@
-{"cep":"38050-220","logradouro":"Alameda Petrópolis","complemento":"","unidade":"","bairro":"Santa Maria","localidade":"Uberaba","uf":"MG","estado":"Minas Gerais","regiao":"Sudeste","ibge":"3170107","gia":"","ddd":"34","siafi":"5401"}
-{"cep":"38037-891","logradouro":"Rua Doutor Edmundo Rodrigues da Cunha Filho","complemento":"","unidade":"","bairro":"Loteamento das Gameleiras","localidade":"Uberaba","uf":"MG","estado":"Minas Gerais","regiao":"Sudeste","ibge":"3170107","gia":"","ddd":"34","siafi":"5401"}
-{"cep":"38037-220","logradouro":"Rua João dela Libera","complemento":"","unidade":"","bairro":"Parque das Gameleiras","localidade":"Uberaba","uf":"MG","estado":"Minas Gerais","regiao":"Sudeste","ibge":"3170107","gia":"","ddd":"34","siafi":"5401"}

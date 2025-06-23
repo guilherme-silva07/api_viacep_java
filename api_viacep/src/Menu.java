@@ -1,7 +1,9 @@
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.*;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -69,30 +71,24 @@ public class Menu {
 
             BufferedReader reader = new BufferedReader(new FileReader(arquivo));
 
-            while (reader.ready()) {
-                String linha = reader.readLine();
-                if (linha != null && !linha.trim().isEmpty()) {
-                    Gson gson = new GsonBuilder().setPrettyPrinting().create();
-                    Endereco endereco = gson.fromJson(linha, Endereco.class);
-                    exibeEndereco(endereco);
-                }
+            Type tipoDaLista = new TypeToken<List<Endereco>>() {}.getType();
+
+            enderecos = new Gson().fromJson(reader, tipoDaLista);
+
+            for (Endereco end : enderecos) {
+                exibeEndereco(end);
             }
         } catch (FileNotFoundException e) {
             System.out.println("Arquivo não encontrado: " + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Erro ao ler o arquivo: " + e.getMessage());
         }
     }
 
     private static void salvarCep() {
         try {
             File arquivo = new File("enderecos.txt");
-            FileWriter writer = new FileWriter(arquivo, true);
-            for(Endereco end : enderecos) {
-                exibeEndereco(end);
-                Gson gson = new GsonBuilder().create();
-                writer.write(gson.toJson(end) + "\n");
-            }
+            FileWriter writer = new FileWriter(arquivo, false);
+            Gson gson = new GsonBuilder().setPrettyPrinting().serializeNulls().create();
+            writer.write(gson.toJson(enderecos));
             writer.close();
         } catch (IOException e) {
             System.out.println("Erro ao escrever no arquivo: " + e.getMessage());
