@@ -16,6 +16,8 @@ public class Menu {
     public static void MenuBuscaCep() {
         String opcao;
 
+        carregaEnderecos();
+
         do {
             System.out.println("Bem-vindo ao sistema de busca de CEP!");
             System.out.println("----------------------------------------");
@@ -29,13 +31,17 @@ public class Menu {
             opcao = scanner.nextLine();
 
             switch (opcao){
-                case "1": buscarCep();
+                case "1":
+                    buscarCep();
                     break;
-                case "2": listarCep();
+                case "2":
+                    listarCep();
                     break;
-                case "3": limparCep();
+                case "3":
+                    limparCep();
                     break;
-                default: salvarCep();
+                default:
+                    salvarCep();
                     break;
             }
 
@@ -56,6 +62,30 @@ public class Menu {
             System.out.println("Erro ao tentar excluir o arquivo: " + e.getMessage());
         } catch (Exception e) {
             System.out.println("Erro inesperado ao tentar excluir o arquivo: " + e.getMessage());
+        }
+    }
+
+    private static void carregaEnderecos() {
+        File arquivo = new File("enderecos.txt");
+
+        if (!arquivo.exists()) {
+            //System.out.println("Nenhum endereço encontrado. Por favor, busque um CEP primeiro.");
+            return;
+        }
+
+        try {
+
+            BufferedReader reader = new BufferedReader(new FileReader(arquivo));
+
+            Type tipoDaLista = new TypeToken<List<Endereco>>() {
+            }.getType();
+
+            enderecos = new Gson().fromJson(reader, tipoDaLista);
+
+        } catch (FileNotFoundException e) {
+            System.out.println("Arquivo não encontrado: " + e.getMessage());
+        } catch (Exception e) {
+            System.out.println("Erro ao carregar os endereços: " + e.getMessage());
         }
     }
 
@@ -111,6 +141,7 @@ public class Menu {
         Endereco endereco = ViaCepAPI.buscaEnderecoPorCep(cep);
         if (endereco != null) {
             enderecos.add(endereco);
+            salvarCep();
             System.out.println("Endereço encontrado com sucesso!");
         } else {
             System.out.println("Nenhum endereço encontrado para o CEP informado.");
