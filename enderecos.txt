@@ -1,0 +1,62 @@
+[
+  {
+    "cep": "38400-358",
+    "logradouro": "Rua Carmo Gifoni",
+    "complemento": "",
+    "unidade": "",
+    "bairro": "Martins",
+    "localidade": "Uberlândia",
+    "uf": "MG",
+    "estado": "Minas Gerais",
+    "regiao": "Sudeste",
+    "ibge": "3170206",
+    "gia": "",
+    "ddd": "34",
+    "siafi": "5403"
+  },
+  {
+    "cep": "38408-332",
+    "logradouro": "Rua Professor Mário Godoy",
+    "complemento": "",
+    "unidade": "",
+    "bairro": "Segismundo Pereira",
+    "localidade": "Uberlândia",
+    "uf": "MG",
+    "estado": "Minas Gerais",
+    "regiao": "Sudeste",
+    "ibge": "3170206",
+    "gia": "",
+    "ddd": "34",
+    "siafi": "5403"
+  },
+  {
+    "cep": "32044-455",
+    "logradouro": "Rua A",
+    "complemento": "",
+    "unidade": "",
+    "bairro": "Vila Militar",
+    "localidade": "Contagem",
+    "uf": "MG",
+    "estado": "Minas Gerais",
+    "regiao": "Sudeste",
+    "ibge": "3118601",
+    "gia": "",
+    "ddd": "31",
+    "siafi": "4371"
+  },
+  {
+    "cep": "30660-598",
+    "logradouro": "Rua Cuiabá",
+    "complemento": "",
+    "unidade": "",
+    "bairro": "Vila Tirol (Barreiro)",
+    "localidade": "Belo Horizonte",
+    "uf": "MG",
+    "estado": "Minas Gerais",
+    "regiao": "Sudeste",
+    "ibge": "3106200",
+    "gia": "",
+    "ddd": "31",
+    "siafi": "4123"
+  }
+]
